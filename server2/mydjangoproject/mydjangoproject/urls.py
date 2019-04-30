@@ -21,4 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', blog.views.index, name='index'),
     path('post/<int:post_id>', blog.views.detail, name = 'detail'),
+    path('new/', blog.views.new, name="new"),
+    path('create/', blog.views.create, name="create"),
+    path('<int:post_id>/modify', blog.views.modify, name="modify"),
+    path('<int:post_id>/update', blog.views.update, name="update"),
 ]
