@@ -1,0 +1,6 @@
+{% for post in posts_show.all %}
+    <h1>{{post.title}}</h1>
+    <p>{{post.summary}}</p>
+    <p>{{post.pub_date}}</p>
+    <a href="{% url 'detail' post.id %}">...more</a>
+{% endfor %}
