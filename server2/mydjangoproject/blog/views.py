@@ -33,3 +33,8 @@ def update(request, post_id):   # edit post
     post.content = request.GET['content']
     post.save()
     return redirect('/post/' + str(post.id))
+
+def delete(request, post_id):   # remove post
+    post = get_object_or_404(Post, pk=post_id)
+    post.delete()
+    return redirect('index')
