@@ -6,4 +6,5 @@
     <p>{{post.pub_date}}</p>
     <a href="{% url 'detail' post.id %}">...more</a>
     <a href="{% url 'modify' post.id %}">수정하기</a>
+    <a href="{% url 'delete' post.id %}">삭제하기</a>
 {% endfor %}
