@@ -1,8 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Post
-
-# Create your views here.
+from .form import PostForm
 
 def index(request):
     posts = Post.objects.all().order_by('-id')
@@ -38,3 +37,15 @@ def delete(request, post_id):   # remove post
     post = get_object_or_404(Post, pk=post_id)
     post.delete()
     return redirect('index')
+
+def newpost(request):   # write post using post type
+    if request.method == "POST":
+        form = PostForm(request.POST) # load form
+        if form.is_valid(): # check is this form valid
+            post = form.save(commit = False) # load without save
+            post.pub_date = timezone.now()
+            post.save()
+            return redirect('index')
+    else:
+        form = PostForm()
+        return render(request, 'new.html', {'form':form})
