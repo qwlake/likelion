@@ -16,6 +16,8 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
+{% extends 'base.html' %}
+{% block contents %}
 <h1>자세한 본문 내용</h1>
 <br><br>
 <h1> 제목 : {{post.title}} </h1>
@@ -23,5 +25,6 @@
 <p> 자세한 본문 : {{post.content}} </p>
 <br><br>
 <a href="{% url 'index' %}">글 목록</a>
+{% endblock %}
 </body>
 </html>

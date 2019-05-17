@@ -1,0 +1,20 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% for x in imgclass.all %}
+<div class="imgfd">
+    <h1>{{ x.title }}</h1>
+    <img src="{{ x.image.url }}" height=400>
+    <p>{{ x.description }}</p>
+</div>
+{% endfor %}
+<img src="{% static 'rose.jpeg' %}" height=400 alt='사진사진'>
+<a href="{% url 'index' %}">뒤로가기</a>
+</body>
+</html>
