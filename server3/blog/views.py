@@ -42,10 +42,23 @@ def newpost(request):   # write post using post type
     if request.method == "POST":
         form = PostForm(request.POST) # load form
         if form.is_valid(): # check is this form valid
-            post = form.save(commit = False) # load without save
+            post = form.save(commit=False) # load without save
             post.pub_date = timezone.now()
             post.save()
             return redirect('index')
     else:
         form = PostForm()
         return render(request, 'new.html', {'form':form})
+
+def editpost(request, post_id):   # edit post using post type
+    post = get_object_or_404(Post, pk=post_id)
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES) # load form
+        if form.is_valid(): # check is this form valid
+            post.title = form.cleaned_data['title']
+            post.content = form.cleaned_data['content']
+            post.save()
+            return redirect('index')
+    else:
+        form = PostForm(instance=post)
+        return render(request, 'modify.html', {'form':form})
