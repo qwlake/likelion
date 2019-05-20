@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+{% extends 'base.html' %}
+{% block contents %}
+
+<div class="container">
+    {% for post in posts_show.all %}
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">{{post.title}}</h3>
+            <p class="card-text">{{post.summary}}</p>
+            <a href="{% url 'detail' post.id %}" class="card-link">...more</a>
+            <a href="{% url 'editpost' post.id %}" class="card-link">수정하기</a>
+            <a href="{% url 'delete' post.id %}" class="card-link">삭제하기</a>
+        </div>
+    </div>
+    {% endfor %}
+    <button type="button" class="btn btn-dark" onclick="location.href='{% url 'newpost' %}'">글쓰기</button>
+    <button type="button" class="btn btn-dark" onclick="location.href='{% url 'imageview' %}'">static 이미지</button>
+</div>
+{% endblock %}
+</body>
+</html>
