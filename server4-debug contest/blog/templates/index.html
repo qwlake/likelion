@@ -93,7 +93,7 @@ table {
             <p>{{post.summary}}</p>
             <p>{{post.pub_date}}</p>
             <a class="btn" href="{% url 'detail' post.id %}">...more</a>
-            <a class="btn" href="{% url 'modify' post.id %}">수정</a>
+            <a class="btn" href="{% url 'editpost' post.id %}">수정</a>
             <a class="btn" href="{% url 'delete' post.id %}">삭제</a>
         </td>
     </table>
