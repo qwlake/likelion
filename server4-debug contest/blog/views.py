@@ -51,7 +51,7 @@ def newpost(request):   # write post using post type
         return render(request, 'new.html', {'form':form})
 
 def editpost(request, post_id):   # edit post using post type
-    post = get_object_or_404(Post, pk=post_id)
+    post = Post.objects.get(pk=post_id)
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES) # load form
         if form.is_valid(): # check is this form valid

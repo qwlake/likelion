@@ -1,16 +1,14 @@
 {% extends 'base.html' %}
 {% block contents %}
-{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>NEW</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/write.css' %}"/>
+    <title>New</title>
     <style>
-    @font-face { font-family: 'Binggrae-Bold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumBarunpen'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff') format('woff'); font-weight: normal; font-style: normal; }
 body{
-    font-family: 'Binggrae-Bold';
+    font-family: 'NanumBarunpen';
 }
 
 #box-form{
@@ -59,7 +57,13 @@ input, textarea {
     box-sizing: border-box;
     border: 1px solid #FF6F61;
 }
-</style>
+#fc {
+    position:absolute;
+    bottom:0;
+    margin-left: 750px;
+}
+
+    </style>
 </head>
 <body>
 <div id="box-form">
@@ -71,7 +75,7 @@ input, textarea {
             </table>
         </div>
         <div id="button-submit">
-            <input id="input-submit"type="submit" value="제출하기">
+            <input id="input-submit" type="submit" value="제출하기">
         </div>
     </form>
 </div>

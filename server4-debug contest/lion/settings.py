@@ -56,7 +56,7 @@ ROOT_URLCONF = 'lion.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['blog/templates'],
+        'DIRS': ['lion/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
