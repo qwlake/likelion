@@ -1,23 +1,15 @@
+{% extends 'base.html' %}
+{% block contents %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>NEW</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/new.css' %}">
 </head>
 <body>
-{% extends 'base.html' %}
-{% block contents %}
-<div class="container">
-    <h1>여기는 new.html입니다</h1>
-    <form action="{% url 'create' %}">
-        <h1>제목:</h1>
-        <input type="text" name="title">
-        <br><br>
-        <h4>내용:</h4>
-        <textarea name="content" cols="30" rows="10"></textarea>
-        <br><br>
-        <input type="submit" value="제출하기">
-    </form>
+<div class="container" id="box-form">
     <br>
     <hr/>
     <form method="POST">
@@ -31,6 +23,6 @@
     <hr/>
     <a href="{% url 'index' %}">뒤로가기</a>
 </div>
-{% endblock %}
 </body>
 </html>
+{% endblock %}

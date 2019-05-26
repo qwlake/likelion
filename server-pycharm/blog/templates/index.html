@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block contents %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +7,6 @@
     <title>Title</title>
 </head>
 <body>
-{% extends 'base.html' %}
-{% block contents %}
 <br><br><br><br>
 <div class="container">
     {% for post in posts_show.all %}
@@ -23,6 +23,6 @@
     <button type="button" class="btn btn-dark" onclick="location.href='{% url 'newpost' %}'">글쓰기</button>
     <button type="button" class="btn btn-dark" onclick="location.href='{% url 'imageview' %}'">static 이미지</button>
 </div>
-{% endblock %}
 </body>
 </html>
+{% endblock %}
