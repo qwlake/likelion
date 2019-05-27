@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'imageview',
+    'wordcount',
 ]
 
 MIDDLEWARE = [
