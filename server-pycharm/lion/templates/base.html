@@ -15,6 +15,12 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <style>
+        html, body {
+            height: 100%;
+        }
+        #nav-container {
+            min-height: 90%;
+        }
         .navbar {
             position:fixed;
             top:0px;
@@ -51,6 +57,7 @@
 </head>
 
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="{% url 'index' %}">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
@@ -97,7 +104,7 @@
         </form>
     </div>
 </nav>
-<div class="content">
+<div class="content" id="nav-container">
     <br><br><br>
     {% block contents %}
     {% endblock %}
