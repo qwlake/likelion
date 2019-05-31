@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block contents %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +7,6 @@
     <title>Title</title>
 </head>
 <body>
-{% extends 'base.html' %}
-{% block contents %}
 <div class="container">
     <h1>자세한 본문 내용</h1>
     <br><br>
@@ -14,11 +14,12 @@
     <p> 작성 날짜 : {{post.pub_date}} </p>
     <p> 자세한 본문 : {{post.content}} </p>
     <br><br>
-    <a href="{% url 'index' %}">글 목록</a>
-    {% if post.author == user %}
-        <a href="{% url 'delete' post.id %}" onclick="return confirm('정말 삭제하시겠습니까?')"></a>
-    <% endif %>
+    <a class="btn btn-primary" href="{% url 'index' %}">글 목록</a>
+    {% if post.author == user.username %}
+    <a class="btn btn-primary" href="{% url 'editpost' post.id %}">수정하기</a>
+    <a class="btn btn-primary" href="{% url 'delete' post.id %}" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
+    {% endif %}
 </div>
-{% endblock %}
 </body>
 </html>
+{% endblock %}

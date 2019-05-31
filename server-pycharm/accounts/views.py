@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, authenticate
 from django.http import HttpResponse
 from .forms import UserForm, LoginForm
 
@@ -12,8 +11,8 @@ def signup(request):
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
+            user = auth.authenticate(username=username, password=raw_password)
+            auth.login(request, user)
             return redirect('index')
     else:
         form = UserCreationForm()
@@ -24,9 +23,9 @@ def login(request):
         form = LoginForm(request.POST)
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(username=username, password=password)
+        user = auth.authenticate(username=username, password=password)
         if user is not None:
-            login(request, user)
+            auth.login(request, user)
             return redirect('index')
         else:
             return HttpResponse('로그인 실패. 다시 시도 해보세요.')

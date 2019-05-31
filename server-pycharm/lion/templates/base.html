@@ -47,7 +47,6 @@
             overflow: hidden;
         }
 
-
     </style>
 </head>
 
@@ -68,29 +67,29 @@
                 <a class="nav-link" href="{% url 'imageview' %}">About </a>
             </li>
         </ul>
+        {% if user.is_authenticated %}
+        <div class="nav-item text-white">환영합니다. {{ user.username }}님!</div>
+        {% endif %}
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                Dropdown
+                Menu
             </button>
-            {% if user.is_authenticated %}
-            <div class="white">환영합니다. {{ user.username }}님!</div>
+
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                {% if user.is_authenticated %}
                 <button class="dropdown-item" type="button" onclick="location.href='{% url 'newpost' %}'">글쓰기</button>
-                <button class="dropdown-item" type="button" onclick="location.href='{% url 'login' %}'">Log in</button>
-                <button class="dropdown-item" type="button" onclick="location.href='{% url 'logout' %}'">Log out</button>
-                <button class="dropdown-item" onclick="javascript:{document.getElementById('logout').submit()}">Logout</button>
+                <button class="dropdown-item" onclick="javascript:{document.getElementById('logout').submit()}">Log out
+                </button>
                 <form id="logout" method="POST" action="{% url 'logout' %}">
                     {% csrf_token %} <input type="hidden"/>
                 </form>
-            </div>
-            {% else %}
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                {% else %}
                 <button class="dropdown-item" type="button" onclick="location.href='{% url 'signup' %}'">Sign up
                 </button>
                 <button class="dropdown-item" type="button" onclick="location.href='{% url 'login' %}'">Log in</button>
+                {% endif %}
             </div>
-            {% endif %}
         </div>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search">
@@ -99,6 +98,7 @@
     </div>
 </nav>
 <div class="content">
+    <br><br><br>
     {% block contents %}
     {% endblock %}
 </div>

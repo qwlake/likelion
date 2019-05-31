@@ -11,7 +11,7 @@ def index(request):
 def detail(request, post_id):
     post_detail = get_object_or_404(Post, pk=post_id)
     if request.user.is_authenticated:
-        user = User.Objects.get(username=request.user.get_username())
+        user = User.objects.get(username=request.user.get_username())
         return render(request, 'detail.html', {'post':post_detail, 'user':user})
     return render(request, 'detail.html', {'post':post_detail})
 
@@ -47,8 +47,9 @@ def newpost(request):   # write post using post type
         form = PostForm(request.POST) # load form
         if form.is_valid(): # check is this form valid
             post = form.save(commit=False) # load without save
-            post.pub_date = timezone.now()
+            post.author = User.objects.get(username=request.user.get_username())
             post.save()
+            print(post.author)
             return redirect('index')
     else:
         form = PostForm()
