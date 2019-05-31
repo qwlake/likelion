@@ -15,6 +15,9 @@
     <p> 자세한 본문 : {{post.content}} </p>
     <br><br>
     <a href="{% url 'index' %}">글 목록</a>
+    {% if post.author == user %}
+        <a href="{% url 'delete' post.id %}" onclick="return confirm('정말 삭제하시겠습니까?')"></a>
+    <% endif %>
 </div>
 {% endblock %}
 </body>

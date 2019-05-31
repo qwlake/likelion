@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Post
@@ -8,7 +9,10 @@ def index(request):
     return render(request, 'index.html', {'posts_show':posts})
 
 def detail(request, post_id):
-    post_detail = get_object_or_404(Post, pk = post_id)
+    post_detail = get_object_or_404(Post, pk=post_id)
+    if request.user.is_authenticated:
+        user = User.Objects.get(username=request.user.get_username())
+        return render(request, 'detail.html', {'post':post_detail, 'user':user})
     return render(request, 'detail.html', {'post':post_detail})
 
 def new(request):       # write post
