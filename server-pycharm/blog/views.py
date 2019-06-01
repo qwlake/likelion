@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Post
+from .models import Post, Comment
 from .form import PostForm
 
 def index(request):
@@ -67,3 +67,14 @@ def editpost(request, post_id):   # edit post using post type
     else:
         form = PostForm(instance=post)
         return render(request, 'modify.html', {'form':form})
+
+def comment_write(request, post_pk):
+    if request.method == 'POST':
+        post = get_object_or_404(Post, pk=post_pk)
+        content = request.POST.get('content')
+
+        conn_user = request.user
+        conn_profile =  User.objects.get(username=request.user.get_username())
+
+        Comment.objects.create(post=post, comment_writer=conn_profile, comment_contents=content)
+        return redirect('/blog/' + str(post.id))

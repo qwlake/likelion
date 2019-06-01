@@ -14,11 +14,25 @@
     <p> 작성 날짜 : {{post.pub_date}} </p>
     <p> 자세한 본문 : {{post.content}} </p>
     <br><br>
-    <a class="btn btn-primary" href="{% url 'index' %}">글 목록</a>
+    {% for comment in post.comments.all %}
+        <div>
+            <div class="date">{{ comment.comment_date }}</div>
+            <strong>{{ comment.comment_writer }}</strong>
+            <p>{{ comment.comment_contents }}</p>
+        </div>
+    {% empty %}
+        <p>댓글이 없습니다.</p>
+    {% endfor %}
     {% if post.author == user.username %}
-    <a class="btn btn-primary" href="{% url 'editpost' post.id %}">수정하기</a>
-    <a class="btn btn-primary" href="{% url 'delete' post.id %}" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
+        <form action="{% url 'comment_write' post_pk=post.pk %}" method="POST">
+        {% csrf_token %}
+            <input type="text" name="content" placeholder="댓글 작성">
+            <input type="submit" value="Write">
+        </form>
+        <a class="btn btn-primary" href="{% url 'editpost' post.id %}">수정하기</a>
+        <a class="btn btn-primary" href="{% url 'delete' post.id %}" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
     {% endif %}
+    <a class="btn btn-primary" href="{% url 'index' %}">글 목록</a>
 </div>
 </body>
 </html>
