@@ -10,8 +10,6 @@ def admin_page(request):
 
 @login_required
 def index(request):
-    # if not request.user.is_authenticated:
-    #     return redirect('login')
     posts = Post.objects.all().order_by('-id')
     return render(request, 'index.html', {'posts_show':posts})
 
