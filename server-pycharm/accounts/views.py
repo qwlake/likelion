@@ -1,21 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .forms import UserForm, LoginForm
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password')
-            user = auth.authenticate(username=username, password=raw_password)
+            user = User.objects.create_user(**form.cleaned_data)
             auth.login(request, user)
             return redirect('index')
     else:
-        form = UserCreationForm()
+        form = UserForm()
     return render(request, 'signup.html', {'form':form})
 
 def login(request):

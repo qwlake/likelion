@@ -18,34 +18,42 @@
         html, body {
             height: 100%;
         }
+
         #nav-container {
             min-height: 90%;
         }
+
         .navbar {
-            position:fixed;
-            top:0px;
-            left:0px;
-            width:100%;
-            z-index:10;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            z-index: 10;
         }
+
         .content {
             min-height: calc(75vh - 110px);
         }
+
         .footer-container {
             position: relative;
             margin: 50 auto -110px;
         }
+
         #footer-link {
-            color:black;
+            color: black;
             text-decoration: none;
         }
+
         #footer-link:hover {
             background-color: #FF6F61;
             color: white;
         }
+
         #footer-wrapper {
             text-align: center;
         }
+
         .list {
             list-style-type: none;
             margin: 0;
@@ -91,6 +99,9 @@
                 <form id="logout" method="POST" action="{% url 'logout' %}">
                     {% csrf_token %} <input type="hidden"/>
                 </form>
+                <button class="dropdown-item" type="button" onclick="location.href='{% url 'admin_page' %}'">Admin
+                    page
+                </button>
                 {% else %}
                 <button class="dropdown-item" type="button" onclick="location.href='{% url 'signup' %}'">Sign up
                 </button>

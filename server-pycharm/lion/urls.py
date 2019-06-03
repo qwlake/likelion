@@ -21,6 +21,7 @@ import blog.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('admin/', blog.views.admin_page, name='admin_page'),
     path('blog/', include('blog.urls')),
     path('imageview/', include('imageview.urls')),
     path('wordcount/', include('wordcount.urls')),
