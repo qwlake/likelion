@@ -9,7 +9,7 @@ class Post(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return ("{} by {}").format(self.title, self.name)
+        return ("{} by {}").format(self.title, self.author)
 
     def summary(self):
         return self.content[:100]

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Result</title>
 </head>
 <body>
 {% extends 'base.html' %}
@@ -20,6 +20,7 @@
     {% endfor %}
     <br>
     <a class="btn btn-primary" href="{% url 'wordcount' %}">다시하기</a>
+    <a class="btn btn-primary" href="{% url 'newpost' fulltext %}">글 쓰기</a>
 </div>
 {% endblock %}
 </body>

@@ -25,18 +25,17 @@ def delete(request, post_id):   # remove post
     post.delete()
     return redirect('index')
 
-def newpost(request):   # write post using post type
+def newpost(request, init_content=""):   # write post using post type
     if request.method == "POST":
         form = PostForm(request.POST) # load form
         if form.is_valid(): # check is this form valid
             post = form.save(commit=False) # load without save
             post.author = User.objects.get(username=request.user.get_username())
             post.save()
-            print(post.author)
             return redirect('index')
     else:
         form = PostForm()
-        return render(request, 'new.html', {'form':form})
+        return render(request, 'new.html', {'form':form, 'init_content':init_content})
 
 def editpost(request, post_id):   # edit post using post type
     post = get_object_or_404(Post, pk=post_id)

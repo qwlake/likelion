@@ -5,17 +5,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>NEW</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/new.css' %}?ver=2">
+    <title>New</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/new.css' %}?ver=1">
 </head>
 <body>
 <div class="container" id="box-form">
     <br>
-    <form method="POST">
+    <form method="POST" action="{% url 'newpost' %}">
         {% csrf_token %}
-        <table>
-            {{form.as_table}}
-        </table>
+        <div class="form-group">
+            <label for="titleTextarea">Title</label>
+            <textarea autofocus required class="form-control" name="title" id="titleTextarea" rows="1"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="contentTextarea">Content</label>
+            <textarea required class="form-control" name="content" id="contentTextarea" rows="10">{{init_content}}</textarea>
+        </div>
         <br>
         <input id="submit" class="btn btn-outline-success my-2" type="submit" value="제출하기">
     </form>
